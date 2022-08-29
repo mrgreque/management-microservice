@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import { EnsureAuthenticate } from "../middleware/EnsureAuthenticate";
 import { createUserController } from "../useCases/createUser";
 import { deleteUserController } from "../useCases/deleteUser";
+import { listUserController } from "../useCases/listUser";
 import { updateUserController } from "../useCases/updateUser";
 
 const userRouter = Router();
@@ -18,6 +19,10 @@ userRouter.delete('/delete/:id', (request: Request, response: Response): Promise
 
 userRouter.put('/update/:id', (request: Request, response: Response): Promise<Response> => {
     return updateUserController.handle(request, response);
+});
+
+userRouter.get('/list/:id?', (request: Request, response: Response): Promise<Response> => {
+    return listUserController.handle(request, response);
 });
 
 export { userRouter };

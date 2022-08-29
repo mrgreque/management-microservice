@@ -11,8 +11,6 @@ class CreateUserUseCase {
 
         const cpfAlreadyExists = await this.userRepository.findByCpf(data.cpf);
 
-        console.log(cpfAlreadyExists);
-
         if (cpfAlreadyExists) {
             throw new Error('Cpf already exists.');
         };
