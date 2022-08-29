@@ -1,11 +1,8 @@
-import { knex } from 'knex';
+import mongoose from 'mongoose';
 import { config } from 'dotenv';
 
 config();
 
-const client = knex({
-    client: 'postgresql',
-    connection: process.env.DATABASE_URL
-});
-
-export { client };
+export async function startMongoClient() {
+    await mongoose.connect(process.env.DATABASE_URL)
+};

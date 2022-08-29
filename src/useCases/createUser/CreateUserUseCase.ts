@@ -8,6 +8,15 @@ class CreateUserUseCase {
     constructor(private userRepository: IUSerRepository) {};
 
     async execute(data: ICreateUserDTO): Promise<void> {
+
+        const cpfAlreadyExists = await this.userRepository.findByCpf(data.cpf);
+
+        console.log(cpfAlreadyExists);
+
+        if (cpfAlreadyExists) {
+            throw new Error('Cpf already exists.');
+        };
+
         const emailAlreadyExists = await this.userRepository.findByEmail(data.email);
 
         if (emailAlreadyExists) {

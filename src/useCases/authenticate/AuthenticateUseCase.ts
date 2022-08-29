@@ -10,24 +10,24 @@ class AuthenticateUseCase {
     constructor(private userRepository: IUSerRepository) {}
     
     async execute({email, password}: IAuthenticateDTO) {
-        const existsEmail = await this.userRepository.findByEmail(email);
+        const existsUser = await this.userRepository.findByEmail(email);
     
-        if (!existsEmail) {
+        if (!existsUser) {
             throw new Error("User or password incorrect.");
         };
     
-        const passwordMatch = await compare(password, existsEmail.password);
+        const passwordMatch = await compare(password, existsUser.password);
     
         if (!passwordMatch) {
             throw new Error("User or password incorrect.");
         };
 
-        const stringfyUser = JSON.stringify(existsEmail);
+        const stringfyUser = JSON.stringify(existsUser);
         const user = JSON.parse(stringfyUser);
         delete user.password;
 
         const token = sign({}, process.env.SECRET_KEY, {
-            subject: user.id,
+            subject: user['_id'],
             expiresIn: "1d",
         });
     
