@@ -6,7 +6,7 @@ export interface IUSerRepository {
     findByCpf(cpf: string): Promise<User>;
     findById(id: string): Promise<User>;
     findAll(): Promise<User[]>;
-    findBySearch(query: object): Promise<User[]>;
+    findBySearch(search: string): Promise<User[]>;
     delete(id: string): Promise<void>;
     update(data: User): Promise<void>;
 };

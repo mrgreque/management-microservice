@@ -19,12 +19,16 @@ class MongoUserRepository implements IUSerRepository {
     };
 
     async findAll(): Promise<User[]> {
-        const users = await UserModel.find({ active: true });
+        const users = await UserModel.find({});
         return users;
     };
 
-    async findBySearch(query: object): Promise<User[]> {
-        const users = await UserModel.find(query);
+    async findBySearch(search: string): Promise<User[]> {
+        const users = await UserModel.find({'$or': [
+            { name: { $regex: search, $options: "i" } },
+            { email: { $regex: search, $options: "i" } }
+        ]});
+
         return users;
     };
 

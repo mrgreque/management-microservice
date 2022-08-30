@@ -13,20 +13,15 @@ class ListUserUseCase {
             const users = await this.userRepository.findAll();
             return users;
 
-        } else if (data.id && !data.search) {
+        } else if (data.id) {
 
             const user = await this.userRepository.findById(data.id);
             return [user];
 
-        } else if (!data.id && data.search) {
+        } else if (data.search) {
 
             const users = await this.userRepository.findBySearch(data.search);
             return users;
-
-        } else if (data.id && data.search) {
-                
-            const user = await this.userRepository.findById(data.id);
-            return [user];
 
         };
 

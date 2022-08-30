@@ -25,4 +25,8 @@ userRouter.get('/list/:id?', (request: Request, response: Response): Promise<Res
     return listUserController.handle(request, response);
 });
 
+userRouter.get('/search/:search?', (request: Request, response: Response): Promise<Response> => {
+    return listUserController.handle(request, response);
+});
+
 export { userRouter };
