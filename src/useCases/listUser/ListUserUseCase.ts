@@ -8,19 +8,26 @@ class ListUserUseCase {
 
     async execute(data: IListUserDTO): Promise<User[]> {
 
-        if (!data.id && !data.search) {
+        console.log(data)
 
-            const users = await this.userRepository.findAll();
-            return users;
-
-        } else if (data.id) {
+        if (data.id) {
 
             const user = await this.userRepository.findById(data.id);
             return [user];
 
-        } else if (data.search) {
+        } else if (data.search || data.role) {
+            console.log('ENTREI NESSA BOMBA')
 
-            const users = await this.userRepository.findBySearch(data.search);
+            let query = {};
+
+            data.search ? query['$or'] = [
+                { name: { $regex: data.search, $options: "i" } },
+                { email: { $regex: data.search, $options: "i" } }
+            ] : null;
+            data.role ? query['role'] = data.role : null;
+
+            const users = await this.userRepository.findBySearch(query);
+
             return users;
 
         };

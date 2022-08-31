@@ -9,11 +9,15 @@ class ListUserController {
 
         let data = {};
 
+        console.log(request.query.role);
+
         if (request.params.id)  {
             data = {id: request.params.id};
-        } else {
-            data = {search: request.params.search};
+        } else if (request.params.search || request.query.role) {
+            data = {search: request.params.search, role: request.query.role};
         };
+
+        console.log(data);
         
         try {
             const users = await this.listUserUseCase.execute(data);

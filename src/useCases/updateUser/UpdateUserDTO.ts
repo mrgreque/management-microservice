@@ -10,6 +10,7 @@ export interface IUpdateUserDTO {
     role?: string;
     degree?: IDegree;
     description?: string;
+    skills?: string;
     clinicName?: string;
     address?: IAddress;
     rate?: number;

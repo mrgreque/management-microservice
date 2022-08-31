@@ -55,7 +55,7 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
+        default: null,
     },
     password: {
         type: String,
@@ -74,6 +74,10 @@ const UserSchema = new Schema({
         default: {}
     },
     description: {
+        type: String,
+        default: null
+    },
+    skills: {
         type: String,
         default: null
     },

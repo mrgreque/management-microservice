@@ -18,7 +18,7 @@ export interface IAddress {
 export class User {
 
     public id?: string;
-    public cpf: string;
+    public cpf?: string;
     public name: string;
     public email: string;
     public password?: string;
