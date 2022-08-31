@@ -16,7 +16,6 @@ class ListUserUseCase {
             return [user];
 
         } else if (data.search || data.role) {
-            console.log('ENTREI NESSA BOMBA')
 
             let query = {};
 

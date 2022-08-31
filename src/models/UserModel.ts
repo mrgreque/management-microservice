@@ -93,6 +93,10 @@ const UserSchema = new Schema({
         type: Number,
         default: null
     },
+    tokenPush: {
+        type: String,
+        default: null
+    },
     active: {
         type: Boolean,
         default: true

@@ -29,6 +29,7 @@ export class User {
     public clinicName?: string;
     public address?: IAddress;
     public rate?: number;
+    public tokenPush?: string;
     public active?: boolean;
     public createdAt?: Date;
     public updatedAt?: Date;

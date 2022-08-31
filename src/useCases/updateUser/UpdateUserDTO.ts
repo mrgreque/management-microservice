@@ -14,5 +14,6 @@ export interface IUpdateUserDTO {
     clinicName?: string;
     address?: IAddress;
     rate?: number;
+    tokenPush?: string;
     active?: boolean;
 }
