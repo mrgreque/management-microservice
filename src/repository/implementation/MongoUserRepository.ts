@@ -14,22 +14,22 @@ class MongoUserRepository implements IUSerRepository {
     };
 
     async findByCpf(cpf: string): Promise<User> {
-        const user = await UserModel.findOne({ cpf });
+        const user = await UserModel.findOne({ cpf }, {'password': 0});
         return user;
     };
 
     async findAll(): Promise<User[]> {
-        const users = await UserModel.find({});
+        const users = await UserModel.find({}, {'password': 0});
         return users;
     };
 
     async findBySearch(query: object): Promise<User[]> {
-        const users = await UserModel.find(query)
+        const users = await UserModel.find(query, {'password': 0})
         return users;
     };
 
     async findById(id: string): Promise<User> {
-        const user = await UserModel.findById(id);
+        const user = await UserModel.findById(id, {'password': 0});
         return user;
     };
 

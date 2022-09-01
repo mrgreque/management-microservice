@@ -28,7 +28,7 @@ class AuthenticateUseCase {
 
         const token = sign({}, process.env.SECRET_KEY, {
             subject: user['_id'],
-            expiresIn: "1d",
+            expiresIn: "90d",
         });
     
         return {user, token};
