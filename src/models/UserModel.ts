@@ -47,7 +47,7 @@ const addressSchema = new Schema({
 const UserSchema = new Schema({
     cpf: {
         type: String,
-        required: true,
+        default: null,
     },
     name: {
         type: String,
