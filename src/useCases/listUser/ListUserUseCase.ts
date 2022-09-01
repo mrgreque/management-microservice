@@ -29,6 +29,11 @@ class ListUserUseCase {
 
             return users;
 
+        } else {
+                
+                const users = await this.userRepository.findAll();
+                return users;
+    
         };
 
     };
