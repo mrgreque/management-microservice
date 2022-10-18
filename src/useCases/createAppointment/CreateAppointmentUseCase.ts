@@ -15,8 +15,6 @@ class CreateAppointmentUseCase {
             ...data.appointment
         }
 
-        console.log(data.appointment)
-
         if (existsAppointment) {
 
             if (existsAppointment.appointments[data.date]) {
