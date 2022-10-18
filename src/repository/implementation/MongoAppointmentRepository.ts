@@ -13,8 +13,8 @@ class MongoAppointmentRepository implements IAppointmentRepository {
         return appointment;
     };
 
-    async findByUserId(userId: string): Promise<Appointment[]> {
-        const appointments = await AppointmentModel.find({ userId });
+    async findByUserId(): Promise<Appointment[]> {
+        const appointments = await AppointmentModel.find();
         return appointments;
     };
 

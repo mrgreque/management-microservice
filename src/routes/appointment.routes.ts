@@ -3,6 +3,7 @@ import { EnsureAuthenticate } from "../middleware/EnsureAuthenticate";
 import { createAppointmentController } from "../useCases/createAppointment";
 import { deleteAppointmentController } from "../useCases/deleteAppointment";
 import { listAppointmentController } from "../useCases/listAppointment";
+import { listUserAppointmentController } from "../useCases/listUserAppointment";
 import { updateAppointmentController } from "../useCases/updateAppointment";
 
 const appointmentRouter = Router();
@@ -15,6 +16,10 @@ appointmentRouter.post('/create', (request: Request, response: Response): Promis
 
 appointmentRouter.get('/list/:professionalId', (request: Request, response: Response): Promise<Response> => {
     return listAppointmentController.handle(request, response);
+});
+
+appointmentRouter.get('/userlist/:userId', (request: Request, response: Response): Promise<Response> => {
+    return listUserAppointmentController.handle(request, response);
 });
 
 appointmentRouter.put('/update/:professionalId', (request: Request, response: Response): Promise<Response> => {
