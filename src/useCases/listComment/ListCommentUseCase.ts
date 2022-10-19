@@ -1,8 +1,9 @@
 import { ICommentRepository } from "../../repository/ICommentRepository";
+import { IUSerRepository } from "../../repository/IUserRepository";
 
 class ListCommentUseCase {
 
-    constructor(private commentRepository: ICommentRepository) {}
+    constructor(private commentRepository: ICommentRepository, private userRepository: IUSerRepository) {}
 
     async execute(data: any): Promise<Comment[]> {
 
@@ -15,6 +16,17 @@ class ListCommentUseCase {
         } else {
             comments = await this.commentRepository.findAll();
         };
+
+        comments = await Promise.all(comments.map(async (comment) => {
+            const user = await this.userRepository.findById(comment.userId);
+            comment['_doc']['user'] = {
+                id: user.id,
+                name: user.name,
+                profilePhoto: user.profilePhoto
+            };
+
+            return comment;
+        }));
 
         return comments;
     };

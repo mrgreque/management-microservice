@@ -1,9 +1,11 @@
 import { MongoRateRepository } from "../../repository/implementation/MongoRateRepository";
+import { MongoUserRepository } from "../../repository/implementation/MongoUserRepository";
 import { CreateRateController } from "./CreateRateController";
 import { CreateRateUseCase } from "./CreateRateUseCase";
 
 const rateRepository = new MongoRateRepository();
-const createRateUseCase = new CreateRateUseCase(rateRepository);
+const userRepository = new MongoUserRepository();
+const createRateUseCase = new CreateRateUseCase(rateRepository, userRepository);
 const createRateController = new CreateRateController(createRateUseCase);
 
 export { createRateController };
