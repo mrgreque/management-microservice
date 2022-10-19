@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --poll --respawn --transpile-only src/server.ts",
-    "build": "tsc",
+    "build": "yarn tsc",
     "start": "yarn build && node dist/server.js",
     "docker-build": "docker build -t back-end-piramid .",
     "docker-start": "docker run -p 3000:3000 back-end-piramid",
