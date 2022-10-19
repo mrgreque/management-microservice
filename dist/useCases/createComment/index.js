@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createCommentController = void 0;
+const MongoCommentRepository_1 = require("../../repository/implementation/MongoCommentRepository");
+const MongoUserRepository_1 = require("../../repository/implementation/MongoUserRepository");
+const CreateCommentController_1 = require("./CreateCommentController");
+const CreateCommentUseCase_1 = require("./CreateCommentUseCase");
+const commentRepository = new MongoCommentRepository_1.MongoCommentRepository();
+const userRepository = new MongoUserRepository_1.MongoUserRepository();
+const createCommentUseCase = new CreateCommentUseCase_1.CreateCommentUseCase(commentRepository, userRepository);
+const createCommentController = new CreateCommentController_1.CreateCommentController(createCommentUseCase);
+exports.createCommentController = createCommentController;

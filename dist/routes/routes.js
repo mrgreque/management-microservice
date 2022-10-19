@@ -2,10 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
+const appointment_routes_1 = require("./appointment.routes");
 const authenticate_routes_1 = require("./authenticate.routes");
+const comment_routes_1 = require("./comment.routes");
+const rate_routes_1 = require("./rate.routes");
 const user_routes_1 = require("./user.routes");
 const router = (0, express_1.Router)();
 exports.router = router;
 router.get('/', (request, response) => { response.send('Hello World!'); });
 router.use('/user', user_routes_1.userRouter);
 router.use('/authenticate', authenticate_routes_1.authenticateRouter);
+router.use('/appointment', appointment_routes_1.appointmentRouter);
+router.use('/comment', comment_routes_1.commentRouter);
+router.use('/rate', rate_routes_1.rateRouter);

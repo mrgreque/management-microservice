@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listAppointmentController = exports.listAppointmentUseCase = void 0;
+const MongoAppointmentRepository_1 = require("../../repository/implementation/MongoAppointmentRepository");
+const ListAppointmentController_1 = require("./ListAppointmentController");
+const ListAppointmentUseCase_1 = require("./ListAppointmentUseCase");
+const appointmentRepository = new MongoAppointmentRepository_1.MongoAppointmentRepository();
+const listAppointmentUseCase = new ListAppointmentUseCase_1.ListAppointmentUseCase(appointmentRepository);
+exports.listAppointmentUseCase = listAppointmentUseCase;
+const listAppointmentController = new ListAppointmentController_1.ListAppointmentController(listAppointmentUseCase);
+exports.listAppointmentController = listAppointmentController;
