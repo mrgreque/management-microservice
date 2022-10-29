@@ -8,16 +8,23 @@ class ListUserAppointmentUseCase {
     async execute(data: IListUserAppointmentDTO) {
         const appointments = await this.appointmentRepository.findByUserId();
 
-        let userAppointments = []; 
+        let userAppointments = {
+            'appointments': {}
+        }; 
 
         await Promise.all(
             appointments.map(async appointment => {
                 return await Promise.all(
-                    Object.keys(appointment.appointments).map(async userAppointment => {
+                    Object.keys(appointment.appointments).map(async dateAppointment => {
                         return await Promise.all(
-                            appointment.appointments[userAppointment].map(async (ap, indx) => {
+                            appointment.appointments[dateAppointment].map(async (ap, indx) => {
                                 if (ap.user_id === data.userId) {
-                                    userAppointments.push({date: userAppointment ,...ap});
+                                    if (userAppointments['appointments'].hasOwnProperty(dateAppointment)) {
+                                        userAppointments['appointments'][dateAppointment].push(ap);
+                                    } else {
+                                        userAppointments['appointments'][dateAppointment] = [ap];
+                                    }
+                                    
                                 }
                             })
                         );
