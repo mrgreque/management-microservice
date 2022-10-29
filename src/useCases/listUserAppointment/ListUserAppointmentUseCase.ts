@@ -13,11 +13,11 @@ class ListUserAppointmentUseCase {
         await Promise.all(
             appointments.map(async appointment => {
                 return await Promise.all(
-                    Object.values(appointment.appointments).map(async userAppointment => {
+                    Object.keys(appointment.appointments).map(async userAppointment => {
                         return await Promise.all(
-                            userAppointment.map(async ap => {
+                            appointment.appointments[userAppointment].map(async (ap, indx) => {
                                 if (ap.user_id === data.userId) {
-                                    userAppointments.push(ap);
+                                    userAppointments.push({date: userAppointment ,...ap});
                                 }
                             })
                         );
